@@ -101,8 +101,12 @@ func (g *git) GetChangedFiles() ([]string, error) {
 	for _, p := range patch.FilePatches() {
 		from, to := p.Files()
 
-		changedFiles[from.Path()] = struct{}{}
-		changedFiles[to.Path()] = struct{}{}
+		if from != nil {
+			changedFiles[from.Path()] = struct{}{}
+		}
+		if to != nil {
+			changedFiles[to.Path()] = struct{}{}
+		}
 	}
 
 	var files []string
