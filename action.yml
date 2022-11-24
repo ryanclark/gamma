@@ -13,11 +13,11 @@ runs:
 
     - uses: actions/setup-go@v3
 
-    - run: go build -o /bin/gamma main.go
+    - run: go build -o build/gamma main.go
       shell: bash
       working-directory: .gamma
 
-    - run: /bin/gamma deploy
+    - run: .gamma/build/gamma deploy
       shell: bash
 
 branding:
