@@ -1,0 +1,19 @@
+
+name: Gamma
+author: Gravitational, Inc.
+description: Build & deploy a monorepo of GitHub Actions into individual repos
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-go@v3
+
+    - run: go build main.go -o /bin/gamma
+      shell: bash
+
+    - run: gamma build
+      shell: bash
+
+branding:
+  color: purple
+  icon: terminal
