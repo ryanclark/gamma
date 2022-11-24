@@ -201,12 +201,18 @@ func (g *git) pushCommit(ctx context.Context, ref *github.Reference, tree *githu
 
 	parent.Commit.SHA = parent.SHA
 
-	for _, entry := range parent.Commit.Tree.Entries {
-		fmt.Printf("%+v\n", entry)
+	head, err := g.repo.Head()
+	if err != nil {
+		return fmt.Errorf("could not get HEAD: %v", err)
+	}
+
+	c, err := g.repo.CommitObject(head.Hash())
+	if err != nil {
+		return fmt.Errorf("could not get the HEAD commit: %v", err)
 	}
 
 	commit := &github.Commit{
-		Message: github.String("test"),
+		Message: github.String(c.Message),
 		Tree:    tree,
 		Parents: []*github.Commit{parent.Commit},
 	}
