@@ -12,8 +12,9 @@ runs:
 
     - uses: actions/setup-go@v3
 
-    - run: go build .gamma/main.go -o /bin/gamma
+    - run: go build main.go -o /bin/gamma
       shell: bash
+      working-directory: .gamma
 
     - run: /bin/gamma deploy
       shell: bash
