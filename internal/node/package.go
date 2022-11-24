@@ -88,7 +88,6 @@ func (s *packageService) GetWorkspaces(p *PackageInfo) ([]*PackageInfo, error) {
 		matches, err := fs.Glob(dir, workspace)
 
 		if err != nil {
-			fmt.Println("we are here")
 			return nil, err
 		}
 
