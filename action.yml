@@ -13,7 +13,7 @@ runs:
 
     - uses: actions/setup-go@v3
 
-    - run: go build main.go -o /bin/gamma
+    - run: go build -o /bin/gamma main.go
       shell: bash
       working-directory: .gamma
 
