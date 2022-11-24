@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GoLinterSettings">
+    <option name="concurrency" value="8" />
+    <option name="enabledLinters">
+      <list>
+        <option value="ineffassign" />
+        <option value="staticcheck" />
+        <option value="bodyclose" />
+        <option value="govet" />
+        <option value="misspell" />
+        <option value="unconvert" />
+        <option value="unused" />
+        <option value="revive" />
+        <option value="goimports" />
+        <option value="gosimple" />
+      </list>
+    </option>
+    <option name="goLinterExe" value="$PROJECT_DIR$/../../../../bin/golangci-lint" />
+    <option name="linterSelected" value="true" />
+  </component>
+</project>
