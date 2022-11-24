@@ -6,12 +6,16 @@ description: Build & deploy a monorepo of GitHub Actions into individual repos
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v3
+      with:
+        path: .gamma
+
     - uses: actions/setup-go@v3
 
-    - run: go build main.go -o /bin/gamma
+    - run: go build .gamma/main.go -o /bin/gamma
       shell: bash
 
-    - run: gamma build
+    - run: /bin/gamma deploy
       shell: bash
 
 branding:
