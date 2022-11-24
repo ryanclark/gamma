@@ -71,6 +71,10 @@ var Command = &cobra.Command{
 			logger.Fatal(err)
 		}
 
+		if len(actions) == 0 {
+			logger.Fatal("could not find any actions")
+		}
+
 		var actionNames []string
 		for _, action := range actions {
 			actionNames = append(actionNames, action.Name())
