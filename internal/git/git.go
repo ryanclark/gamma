@@ -180,7 +180,12 @@ func (g *git) getTree(ctx context.Context, ref *github.Reference, a action.Actio
 }
 
 func (g *git) getRef(ctx context.Context, a action.Action) (*github.Reference, error) {
-	ref, _, err := g.gh.Git.GetRef(ctx, a.Owner(), a.Name(), "refs/heads/main")
+	head, err := g.repo.Head()
+	if err != nil {
+		return nil, fmt.Errorf("could not get HEAD: %v", err)
+	}
+
+	ref, _, err := g.gh.Git.GetRef(ctx, a.Owner(), a.Name(), head.Name().String())
 	if err != nil {
 		return nil, err
 	}
