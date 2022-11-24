@@ -1,4 +1,3 @@
-
 name: Gamma
 author: Gravitational, Inc.
 description: Build & deploy a monorepo of GitHub Actions into individual repos
@@ -9,6 +8,7 @@ runs:
     - uses: actions/checkout@v3
       with:
         path: .gamma
+        ref: main
 
     - uses: actions/setup-go@v3
 
