@@ -7,6 +7,7 @@ runs:
   steps:
     - uses: actions/checkout@v3
       with:
+        repository: ryanclark/gamma
         path: .gamma
         ref: main
 
