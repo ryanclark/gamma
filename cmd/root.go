@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 
+	"github.com/ryanclark/gamma/cmd/build"
 	"github.com/ryanclark/gamma/cmd/deploy"
 	"github.com/ryanclark/gamma/internal/color"
 )
@@ -27,8 +27,8 @@ func init() {
 	cobra.AddTemplateFunc("colorize", colorize)
 	cobra.AddTemplateFunc("green", color.Green)
 	cobra.AddTemplateFunc("logo", logo)
-	cobra.OnInitialize(initConfig)
 
+	rootCmd.AddCommand(deploy.Command)
 	rootCmd.AddCommand(deploy.Command)
 
 	rootCmd.SetHelpTemplate(`{{ logo }}
@@ -71,8 +71,8 @@ Use "{{.CommandPath}} [command] --help" for more information about a command.{{e
 
 func colorize(s, name string) string {
 	switch s {
-	//case build.Command.Name():
-	//	return color.Magenta(name)
+	case build.Command.Name():
+		return color.Magenta(name)
 	case deploy.Command.Name():
 		return color.Teal(name)
 	case "help":
@@ -86,8 +86,8 @@ func colorize(s, name string) string {
 
 func emoji(s string) string {
 	switch s {
-	//case build.Command.Name():
-	//	return "🔧"
+	case build.Command.Name():
+		return "🔧"
 	case deploy.Command.Name():
 		return "🚀"
 	case "help":
@@ -97,26 +97,4 @@ func emoji(s string) string {
 	}
 
 	return s
-}
-
-func initConfig() {
-	//if cfgFile != "" {
-	//	// Use config file from the flag.
-	//	viper.SetConfigFile(cfgFile)
-	//} else {
-	//	// Find home directory.
-	//	home, err := os.UserHomeDir()
-	//	cobra.CheckErr(err)
-	//
-	//	// Search config in home directory with name ".cobra" (without extension).
-	//	viper.AddConfigPath(home)
-	//	viper.SetConfigType("yaml")
-	//	viper.SetConfigName(".cobra")
-	//}
-	//
-	viper.AutomaticEnv()
-	//
-	//if err := viper.ReadInConfig(); err == nil {
-	//	fmt.Println("Using config file:", viper.ConfigFileUsed())
-	//}
 }
