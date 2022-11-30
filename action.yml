@@ -3,22 +3,8 @@ author: Gravitational, Inc.
 description: Build & deploy a monorepo of GitHub Actions into individual repos
 
 runs:
-  using: composite
-  steps:
-    - uses: actions/checkout@v3
-      with:
-        repository: ryanclark/gamma
-        path: .gamma
-        ref: main
-
-    - uses: actions/setup-go@v3
-
-    - run: go build -o build/gamma main.go
-      shell: bash
-      working-directory: .gamma
-
-    - run: .gamma/build/gamma deploy
-      shell: bash
+  using: docker
+  image: 'docker://ghcr.io/ryanclark/gamma:latest'
 
 branding:
   color: purple
