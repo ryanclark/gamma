@@ -9,25 +9,25 @@ interface Inputs {
 
 function getPlatform(rawPlatform: string): string {
   switch (rawPlatform) {
-    case 'linux': {
+    case 'linux':
       return 'linux';
-    }
   }
+
   throw new Error(`platform ${rawPlatform} not supported`);
 }
 
 function getArch(rawArch: string): string {
   switch (rawArch) {
-    case 'x64': {
+    case 'x64':
       return 'amd64';
-    }
-    case 'arm': {
+
+    case 'arm':
       return 'arm';
-    }
-    case 'arm64': {
+
+    case 'arm64':
       return 'arm64';
-    }
   }
+
   throw new Error(`architecture ${rawArch} not supported`);
 }
 
@@ -85,7 +85,7 @@ async function run(): Promise<void> {
     `https://github.com/ryanclark/gamma/releases/${inputs.version}/download/gamma-${platform}-${arch}`
   );
 
-  const cachedPath = await tc.cacheDir(downloadPath, toolName, inputs.version);
+  const cachedPath = await tc.cacheFile(downloadPath, toolName, toolName, inputs.version);
 
   core.addPath(cachedPath);
 }

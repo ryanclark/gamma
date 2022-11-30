@@ -6539,7 +6539,7 @@ module.exports = v4;
 
 /***/ }),
 
-/***/ 4177:
+/***/ 6144:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -6585,23 +6585,19 @@ const core = __importStar(__nccwpck_require__(2186));
 const tc = __importStar(__nccwpck_require__(7784));
 function getPlatform(rawPlatform) {
     switch (rawPlatform) {
-        case 'linux': {
+        case 'linux':
             return 'linux';
-        }
     }
     throw new Error(`platform ${rawPlatform} not supported`);
 }
 function getArch(rawArch) {
     switch (rawArch) {
-        case 'x64': {
+        case 'x64':
             return 'amd64';
-        }
-        case 'arm': {
+        case 'arm':
             return 'arm';
-        }
-        case 'arm64': {
+        case 'arm64':
             return 'arm64';
-        }
     }
     throw new Error(`architecture ${rawArch} not supported`);
 }
@@ -6643,7 +6639,7 @@ function run() {
         const platform = getPlatform(os_1.default.platform());
         const arch = getArch(os_1.default.arch());
         const downloadPath = yield tc.downloadTool(`https://github.com/ryanclark/gamma/releases/${inputs.version}/download/gamma-${platform}-${arch}`);
-        const cachedPath = yield tc.cacheDir(downloadPath, toolName, inputs.version);
+        const cachedPath = yield tc.cacheFile(downloadPath, toolName, toolName, inputs.version);
         core.addPath(cachedPath);
     });
 }
@@ -6814,7 +6810,7 @@ module.exports = require("util");
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(4177);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(6144);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
