@@ -53,3 +53,5 @@
 
 # Ignore code-workspaces
 *.code-workspace
+
+node_modules
