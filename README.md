@@ -170,13 +170,15 @@ jobs:
           fetch-depth: 0 # Make sure you set this, as Gamma needs the Git history
 
       - uses: actions/setup-node@v3
+        
+      - uses: gravitational/setup-gamma@v1
 
       - run: yarn # Install your dependencies as normal
 
       - run: yarn test # Test your actions, if you have tests
 
       - name: Deploy actions
-        uses: gravitational/gamma@v1
+        run: gamma deploy
         env:
           GITHUB_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
           GITHUB_APP_ID: ${{ secrets.GH_APP_ID }}
@@ -191,7 +193,7 @@ Gamma mirrors the commit message - if you commit to the monorepo a message such 
 
 ### Testing pull requests
 
-It's also important to check that Gamma can build the action and compile the `action.yml` for pull requests. To do this, you can pass the environment variable `SKIP_DEPLOY` to Gamma to tell it to skip the deployment stage.
+It's also important to check that Gamma can build the action and compile the `action.yml` for pull requests. To do this, you can use the `gamma build` command instead.
 
 `.github/workflows/build.yml`
 
@@ -212,14 +214,15 @@ jobs:
 
       - uses: actions/setup-node@v3
 
+      - uses: gravitational/setup-gamma@v1
+
       - run: yarn # Install your dependencies as normal
         
       - run: yarn test # Test your actions, if you have tests
 
-      - name: Deploy actions
-        uses: gravitational/gamma@v1
+      - name: Build actions
+        run: gamma build
         env:
-          SKIP_DEPLOY: true
           GITHUB_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
           GITHUB_APP_ID: ${{ secrets.GH_APP_ID }}
           GITHUB_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
