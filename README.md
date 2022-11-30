@@ -209,8 +209,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Make sure you set this, as Gamma needs the Git history
 
       - uses: actions/setup-node@v3
 
