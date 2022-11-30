@@ -6583,6 +6583,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const os_1 = __importDefault(__nccwpck_require__(2037));
 const core = __importStar(__nccwpck_require__(2186));
 const tc = __importStar(__nccwpck_require__(7784));
+const fs_1 = __nccwpck_require__(7147);
 function getPlatform(rawPlatform) {
     switch (rawPlatform) {
         case 'linux':
@@ -6639,8 +6640,10 @@ function run() {
         const platform = getPlatform(os_1.default.platform());
         const arch = getArch(os_1.default.arch());
         const downloadPath = yield tc.downloadTool(`https://github.com/ryanclark/gamma/releases/${inputs.version}/download/gamma-${platform}-${arch}`);
+        (0, fs_1.chmodSync)(downloadPath, '755');
         const cachedPath = yield tc.cacheFile(downloadPath, toolName, toolName, inputs.version);
         core.addPath(cachedPath);
+        core.info('Done!');
     });
 }
 run().catch(core.setFailed);

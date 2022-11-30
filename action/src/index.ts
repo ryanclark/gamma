@@ -2,6 +2,7 @@ import os from 'os';
 
 import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
+import { chmodSync } from 'fs';
 
 interface Inputs {
   version: string;
@@ -85,9 +86,13 @@ async function run(): Promise<void> {
     `https://github.com/ryanclark/gamma/releases/${inputs.version}/download/gamma-${platform}-${arch}`
   );
 
+  chmodSync(downloadPath, '755');
+
   const cachedPath = await tc.cacheFile(downloadPath, toolName, toolName, inputs.version);
 
   core.addPath(cachedPath);
+
+  core.info('Done!')
 }
 
 run().catch(core.setFailed);
