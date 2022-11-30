@@ -222,8 +222,4 @@ jobs:
 
       - name: Build actions
         run: gamma build
-        env:
-          GITHUB_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
-          GITHUB_APP_ID: ${{ secrets.GH_APP_ID }}
-          GITHUB_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
 ```
