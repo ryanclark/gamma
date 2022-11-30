@@ -3,7 +3,7 @@ name: Deploy Gamma
 on:
   push:
     branches:
-      main:
+      - main
 
 env:
   REGISTRY: ghcr.io
